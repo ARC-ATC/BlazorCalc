@@ -6,6 +6,21 @@
     <meta name="theme-color" content="#0b1020" />
     <meta name="description" content="A fast, accessible exam time calculator for standard and extra-time accommodations." />
     <title>Exam Time Calculator</title>
+    <script>
+        (() => {
+            try {
+                const saved = localStorage.getItem("examcalc-theme");
+                const theme = saved === "dark" || saved === "light"
+                    ? saved
+                    : (window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.style.colorScheme = theme;
+            } catch {
+                // Keep the default light theme when storage is unavailable.
+            }
+        })();
+    </script>
     <base href="/BlazorCalc/" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="BlazorWasm.styles.css" rel="stylesheet" />
