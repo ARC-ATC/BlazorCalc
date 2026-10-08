@@ -1,25 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-
 :root {
-    --page-bg: #f4f7fb;
-    --page-bg-deep: #eaf0f8;
-    --surface: rgba(255, 255, 255, 0.84);
+    --arc-blue: #003058;
+    --arc-blue-deep: #001f39;
+    --arc-blue-soft: #e9f1f6;
+    --arc-red: #ba0c2f;
+    --arc-red-soft: #fbecef;
+    --arc-teal: #107e7d;
+    --arc-orange: #be5623;
+    --page-bg: #f7f7f9;
+    --page-bg-deep: #eef1f4;
+    --surface: rgba(255, 255, 255, 0.90);
     --surface-solid: #ffffff;
-    --surface-soft: #f7f9fc;
-    --text: #182033;
-    --text-soft: #64708a;
-    --text-faint: #8e98aa;
-    --border: rgba(25, 39, 72, 0.09);
-    --border-strong: rgba(25, 39, 72, 0.16);
-    --primary: #5b5cf0;
-    --primary-deep: #4445c8;
-    --primary-soft: #eeefff;
-    --cyan: #39b5d8;
-    --cyan-soft: #e8f8fc;
-    --green: #2eb67d;
-    --green-soft: #e8f8f0;
-    --amber: #f0a44b;
-    --amber-soft: #fff4e7;
+    --surface-soft: #f7f7f9;
+    --text: #20252b;
+    --text-soft: #5f6871;
+    --text-faint: #858d95;
+    --border: rgba(0, 48, 88, 0.10);
+    --border-strong: rgba(0, 48, 88, 0.18);
+    --primary: var(--arc-blue);
+    --primary-deep: var(--arc-blue-deep);
+    --primary-soft: var(--arc-blue-soft);
+    --cyan: #547b96;
+    --cyan-soft: #edf4f7;
+    --green: var(--arc-teal);
+    --green-soft: #e7f4f3;
+    --amber: var(--arc-orange);
+    --amber-soft: #fbefe8;
     --shadow-lg: 0 24px 70px rgba(47, 64, 103, 0.12);
     --shadow-md: 0 14px 38px rgba(47, 64, 103, 0.10);
     --shadow-sm: 0 8px 24px rgba(47, 64, 103, 0.07);
@@ -31,6 +36,26 @@
 
 html[data-theme="dark"] {
     color-scheme: dark;
+
+    --page-bg: #081421;
+    --page-bg-deep: #0e1c2a;
+    --surface: rgba(15, 30, 44, 0.92);
+    --surface-solid: #122334;
+    --surface-soft: #0e1c2a;
+    --text: #f2f5f7;
+    --text-soft: #b5c0c9;
+    --text-faint: #83919d;
+    --border: rgba(255, 255, 255, 0.10);
+    --border-strong: rgba(255, 255, 255, 0.19);
+    --primary: #76a3c2;
+    --primary-deep: #003058;
+    --primary-soft: #17344a;
+    --cyan: #6e99b2;
+    --cyan-soft: #15303e;
+    --green: #47a6a2;
+    --green-soft: #133735;
+    --amber: #d88558;
+    --amber-soft: #3a251d;
 }
 
 html[data-theme="dark"] {
@@ -69,7 +94,7 @@ body,
 body {
     margin: 0;
     min-width: 320px;
-    font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: var(--text);
     background:
         radial-gradient(circle at 10% 10%, rgba(91, 92, 240, 0.12), transparent 28rem),
@@ -95,7 +120,7 @@ button {
 button:focus-visible,
 input:focus-visible,
 a:focus-visible {
-    outline: 3px solid rgba(91, 92, 240, 0.28);
+    outline: 3px solid rgba(186, 12, 47, 0.30);
     outline-offset: 2px;
 }
 
@@ -170,7 +195,7 @@ a {
 }
 
 .brand-copy strong {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
     letter-spacing: -0.02em;
 }
@@ -272,7 +297,7 @@ a {
     max-width: 760px;
     margin: 13px 0 12px;
     color: white;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: clamp(2.4rem, 5vw, 4.4rem);
     line-height: 0.96;
     letter-spacing: -0.06em;
@@ -350,7 +375,7 @@ a {
 
 .orbit-time {
     color: white;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 22px;
     font-weight: 600;
     letter-spacing: -0.03em;
@@ -435,7 +460,7 @@ a {
     border-radius: 12px;
     background: var(--primary-soft);
     color: var(--primary);
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 700;
 }
@@ -452,7 +477,7 @@ a {
 .section-heading h2,
 .result-topline h2 {
     margin: 0;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 23px;
     letter-spacing: -0.04em;
 }
@@ -534,7 +559,7 @@ a {
 .multiplier-readout span {
     display: inline;
     margin: 0;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
     font-weight: 700;
 }
@@ -662,7 +687,7 @@ a {
 
 .preset-button:hover {
     transform: translateY(-2px);
-    border-color: rgba(91, 92, 240, 0.28);
+    border-color: rgba(186, 12, 47, 0.30);
     box-shadow: var(--shadow-sm);
 }
 
@@ -675,7 +700,7 @@ a {
 
 .preset-label {
     display: block;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -902,7 +927,7 @@ a {
     display: block;
     margin: 4px 0 5px;
     color: var(--text);
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: clamp(2.2rem, 4vw, 3.1rem);
     line-height: 1.05;
     letter-spacing: -0.05em;
@@ -944,7 +969,7 @@ a {
 
 .stat-card strong {
     margin-top: 5px;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     letter-spacing: -0.02em;
 }
@@ -1124,14 +1149,14 @@ a {
 
 .not-found-code {
     color: var(--primary);
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 44px;
     font-weight: 700;
 }
 
 .not-found-card h1 {
     margin: 7px 0 8px;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
     letter-spacing: -0.04em;
 }
@@ -1515,5 +1540,194 @@ html[data-theme="dark"] .not-found-card {
 
     .theme-toggle-label {
         display: none;
+    }
+}
+
+
+/* American River College visual identity */
+.brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+.arc-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 48, 88, 0.08);
+}
+
+.arc-brand img {
+    display: block;
+    width: auto;
+    max-width: 176px;
+    height: 46px;
+    object-fit: contain;
+}
+
+.brand-divider {
+    width: 1px;
+    height: 34px;
+    background: var(--border-strong);
+}
+
+.brand-mark {
+    background: linear-gradient(145deg, var(--arc-blue), var(--arc-red));
+    box-shadow: 0 9px 22px rgba(0, 48, 88, 0.28);
+}
+
+.calculator-hero {
+    background:
+        radial-gradient(circle at 82% 18%, rgba(186, 12, 47, 0.20), transparent 18rem),
+        radial-gradient(circle at 30% 90%, rgba(84, 123, 150, 0.18), transparent 20rem),
+        linear-gradient(135deg, #002441 0%, #003058 55%, #0d456d 100%);
+}
+
+.calculator-title span {
+    color: #e7a5b3;
+}
+
+.eyebrow-dot {
+    background: #ffffff;
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.10);
+}
+
+.section-kicker {
+    color: var(--arc-blue);
+}
+
+.preset-button.is-active {
+    border-color: rgba(186, 12, 47, 0.34);
+    background:
+        linear-gradient(160deg, rgba(251, 236, 239, 0.98), rgba(248, 250, 252, 1));
+    box-shadow: 0 8px 20px rgba(186, 12, 47, 0.10);
+}
+
+.preset-button.is-active .preset-percent,
+.stat-card.accent strong,
+.multiplier-readout,
+.range-labels output {
+    color: var(--arc-red);
+}
+
+.multiplier-readout,
+.stat-card.accent {
+    background: var(--arc-red-soft);
+}
+
+.finish-display {
+    background:
+        radial-gradient(circle at 85% 10%, rgba(84, 123, 150, 0.13), transparent 10rem),
+        linear-gradient(145deg, #eaf2f6, #fafbfc);
+    border-color: rgba(0, 48, 88, 0.08);
+}
+
+.finish-display strong {
+    color: var(--arc-blue);
+}
+
+.timeline-segment.extra {
+    background: linear-gradient(90deg, var(--arc-red), #d84d69);
+}
+
+.legend-dot.extra {
+    background: var(--arc-red);
+}
+
+.copy-button {
+    background: linear-gradient(135deg, var(--arc-blue), var(--arc-blue-deep));
+    box-shadow: 0 12px 28px rgba(0, 48, 88, 0.22);
+}
+
+.copy-button:hover {
+    box-shadow: 0 16px 32px rgba(0, 48, 88, 0.28);
+}
+
+.optional-icon {
+    background: var(--cyan-soft);
+    color: var(--cyan);
+}
+
+html[data-theme="dark"] .calculator-hero {
+    background:
+        radial-gradient(circle at 82% 18%, rgba(186, 12, 47, 0.22), transparent 18rem),
+        radial-gradient(circle at 30% 90%, rgba(84, 123, 150, 0.16), transparent 20rem),
+        linear-gradient(135deg, #06131f 0%, #003058 65%, #0a3f62 100%);
+}
+
+html[data-theme="dark"] .calculator-title span {
+    color: #ec9dae;
+}
+
+html[data-theme="dark"] .section-kicker {
+    color: #8db4cf;
+}
+
+html[data-theme="dark"] .preset-button.is-active {
+    border-color: rgba(186, 12, 47, 0.45);
+    background: linear-gradient(160deg, rgba(66, 26, 38, 0.98), rgba(18, 35, 52, 1));
+}
+
+html[data-theme="dark"] .finish-display {
+    background:
+        radial-gradient(circle at 85% 10%, rgba(84, 123, 150, 0.14), transparent 10rem),
+        linear-gradient(145deg, #17344a, #122334);
+}
+
+html[data-theme="dark"] .finish-display strong {
+    color: #f2f5f7;
+}
+
+html[data-theme="dark"] .copy-button {
+    background: linear-gradient(135deg, #0b4268, #003058);
+}
+
+@media (max-width: 700px) {
+    .brand-lockup {
+        gap: 10px;
+    }
+
+    .arc-brand {
+        min-height: 46px;
+        padding: 4px 8px;
+    }
+
+    .arc-brand img {
+        max-width: 132px;
+        height: 38px;
+    }
+
+    .brand-divider {
+        display: none;
+    }
+
+    .brand-copy span {
+        display: none;
+    }
+
+    .brand-copy strong {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 430px) {
+    .arc-brand {
+        padding: 4px 7px;
+    }
+
+    .arc-brand img {
+        max-width: 108px;
+        height: 32px;
+    }
+
+    .brand-mark {
+        width: 30px;
+        height: 30px;
     }
 }
