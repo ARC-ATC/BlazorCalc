@@ -1,9 +1,292 @@
-﻿@page "/"
+@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Exam Time Calculator</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="calculator-page">
+    <section class="calculator-hero" aria-labelledby="calculator-title">
+        <div class="hero-copy">
+            <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                Accessibility timing tool
+            </div>
 
-Welcome to your new app.
+            <h1 id="calculator-title" class="calculator-title">
+                Know the finish time
+                <span>before the exam starts.</span>
+            </h1>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+            <p class="hero-description">
+                Calculate an adjusted exam finish time in seconds.
+                Built for quick, confident planning when extra-time
+                accommodations are involved.
+            </p>
+
+            <div class="hero-trust">
+                <span>Instant calculation</span>
+                <span>Calculations stay in-browser</span>
+                <span>No account required</span>
+            </div>
+        </div>
+
+        <div class="hero-orbit" aria-hidden="true">
+            <div class="orbit-ring orbit-ring-one"></div>
+            <div class="orbit-ring orbit-ring-two"></div>
+            <div class="orbit-core">
+                <span class="orbit-time">@FormatTime(Calculation.FinalFinish)</span>
+                <span class="orbit-label">finish</span>
+            </div>
+            <span class="orbit-dot orbit-dot-one"></span>
+            <span class="orbit-dot orbit-dot-two"></span>
+            <span class="orbit-spark">✦</span>
+        </div>
+    </section>
+
+    <div class="calculator-grid">
+        <section class="surface-card setup-card" aria-labelledby="setup-heading">
+            <div class="section-heading">
+                <div class="step-number">01</div>
+                <div>
+                    <div class="section-kicker">Exam setup</div>
+                    <h2 id="setup-heading">Set the clock</h2>
+                    <p>Enter the ordinary exam schedule, then choose the accommodation.</p>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="field-group">
+                    <label for="exam-date">Exam date</label>
+                    <div class="input-shell">
+                        <span class="input-icon" aria-hidden="true">▣</span>
+                        <input id="exam-date"
+                               class="field-input"
+                               type="date"
+                               @bind="ExamDate" />
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="start-time">Start time</label>
+                    <div class="input-shell">
+                        <span class="input-icon" aria-hidden="true">◷</span>
+                        <input id="start-time"
+                               class="field-input"
+                               type="time"
+                               @bind="StartTime" />
+                    </div>
+                </div>
+
+                <div class="field-group field-group-wide">
+                    <div class="field-label-row">
+                        <label for="exam-duration">Standard exam length</label>
+                        <span class="field-value">@FormatMinutes(ExamDurationMinutes)</span>
+                    </div>
+
+                    <div class="duration-input-row">
+                        <div class="input-shell duration-shell">
+                            <span class="input-icon" aria-hidden="true">⌁</span>
+                            <input id="exam-duration"
+                                   class="field-input"
+                                   type="number"
+                                   min="1"
+                                   max="1440"
+                                   step="1"
+                                   @bind="ExamDurationMinutes" />
+                            <span class="input-suffix">minutes</span>
+                        </div>
+
+                        <div class="quick-picks" aria-label="Common exam lengths">
+                            @foreach (var duration in new[] { 30, 45, 60, 75, 90, 120, 180 })
+                            {
+                                <button type="button"
+                                        class="quick-pick @(ExamDurationMinutes == duration ? "is-selected" : "")"
+                                        @onclick="() => SetDuration(duration)">
+                                    @duration
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <fieldset class="extra-time-fieldset">
+                <legend>Extra time accommodation</legend>
+
+                <div class="fieldset-heading">
+                    <div>
+                        <strong>Choose a multiplier</strong>
+                        <span>Common presets are one tap away.</span>
+                    </div>
+                    <div class="multiplier-readout">
+                        <span>@Calculation.Multiplier.ToString("0.##", CultureInfo.CurrentCulture)</span><small>×</small>
+                    </div>
+                </div>
+
+                <div class="preset-grid" role="group" aria-label="Extra time presets">
+                    @foreach (var preset in ExtraTimePresets)
+                    {
+                        <button type="button"
+                                class="@GetActivePresetClass(preset.Percent)"
+                                @onclick="() => SetExtraTime(preset.Percent)">
+                            <span class="preset-label">@preset.Label</span>
+                            <span class="preset-percent">
+                                @(preset.Percent == 0 ? "no added time" : $"+{preset.Percent:0.#}%")
+                            </span>
+                        </button>
+                    }
+                </div>
+
+                <div class="custom-time-row">
+                    <div class="custom-time-copy">
+                        <span class="custom-time-title">Fine tune</span>
+                        <span class="custom-time-subtitle">Use a custom percentage when the accommodation is not a preset.</span>
+                    </div>
+
+                    <div class="custom-time-control">
+                        <input type="range"
+                               min="0"
+                               max="200"
+                               step="5"
+                               value="@ExtraTimePercent"
+                               @oninput="e => SetExtraTime(decimal.TryParse(e.Value?.ToString(), out var value) ? value : 0)" />
+                        <div class="range-labels">
+                            <span>0%</span>
+                            <output>@ExtraTimePercent.ToString("0.#", CultureInfo.CurrentCulture)%</output>
+                            <span>200%</span>
+                        </div>
+                    </div>
+
+                    <div class="custom-percent-shell">
+                        <input aria-label="Custom extra time percentage"
+                               type="number"
+                               min="0"
+                               max="200"
+                               step="1"
+                               @bind="ExtraTimePercent" />
+                        <span>%</span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="optional-strip">
+                <div class="optional-copy">
+                    <span class="optional-icon" aria-hidden="true">＋</span>
+                    <div>
+                        <strong>Break or other fixed time</strong>
+                        <span>Added after the adjusted exam duration.</span>
+                    </div>
+                </div>
+
+                <div class="break-input">
+                    <input aria-label="Break or other fixed time in minutes"
+                           type="number"
+                           min="0"
+                           max="240"
+                           step="1"
+                           @bind="BreakMinutes" />
+                    <span>min</span>
+                </div>
+            </div>
+
+            <div class="setup-actions">
+                <button type="button" class="secondary-button" @onclick="Reset">
+                    <span aria-hidden="true">↺</span>
+                    Reset
+                </button>
+
+                <div class="setup-note">
+                    <span class="note-dot"></span>
+                    Results update automatically
+                </div>
+            </div>
+        </section>
+
+        <aside class="surface-card result-card" aria-labelledby="result-heading">
+            <div class="result-topline">
+                <div>
+                    <div class="section-kicker">Calculated result</div>
+                    <h2 id="result-heading">Your exam window</h2>
+                </div>
+                <div class="live-badge">
+                    <span></span>
+                    Ready
+                </div>
+            </div>
+
+            <div class="finish-display" aria-live="polite">
+                <span class="finish-label">Final finish time</span>
+                <strong>@FormatFinish(Calculation.FinalFinish)</strong>
+                <span class="finish-subtitle">
+                    Starts @FormatTime(Calculation.Start)
+                    · @FormatDuration(Calculation.AdjustedExamDuration) of exam time
+                    @if (Calculation.BreakMinutes > 0)
+                    {
+                        <text> · + @Calculation.BreakMinutes min fixed time</text>
+                    }
+                </span>
+            </div>
+
+            <div class="result-stats">
+                <div class="stat-card">
+                    <span>Standard finish</span>
+                    <strong>@FormatFinish(Calculation.StandardFinish)</strong>
+                </div>
+
+                <div class="stat-card accent">
+                    <span>Extra time</span>
+                    <strong>+@FormatDuration(Calculation.AdditionalTime)</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>Adjusted duration</span>
+                    <strong>@FormatDuration(Calculation.AdjustedExamDuration)</strong>
+                </div>
+            </div>
+
+            <div class="timeline-section">
+                <div class="timeline-heading">
+                    <div>
+                        <span class="section-kicker">Timeline</span>
+                        <strong>Where the time goes</strong>
+                    </div>
+                    <span class="timeline-total">@FormatDuration(Calculation.AdjustedExamDuration + TimeSpan.FromMinutes(Calculation.BreakMinutes)) total</span>
+                </div>
+
+                <div class="timeline-bar" role="img" aria-label="Timeline showing standard exam time, extra time, and fixed additional time">
+                    <div class="timeline-segment standard"
+                         style="@($"width: {Calculation.StandardShare.ToString("0.##", CultureInfo.InvariantCulture)}%")"></div>
+                    <div class="timeline-segment extra"
+                         style="@($"width: {Calculation.ExtraShare.ToString("0.##", CultureInfo.InvariantCulture)}%")"></div>
+                    <div class="timeline-segment break"
+                         style="@($"width: {Calculation.BreakShare.ToString("0.##", CultureInfo.InvariantCulture)}%")"></div>
+                </div>
+
+                <div class="timeline-legend">
+                    <span><i class="legend-dot standard"></i>Standard · @FormatDuration(Calculation.StandardDuration)</span>
+                    <span><i class="legend-dot extra"></i>Extra · @FormatDuration(Calculation.AdditionalTime)</span>
+                    @if (Calculation.BreakMinutes > 0)
+                    {
+                        <span><i class="legend-dot break"></i>Fixed · @Calculation.BreakMinutes min</span>
+                    }
+                </div>
+            </div>
+
+            <div class="result-summary">
+                <div class="summary-icon" aria-hidden="true">✓</div>
+                <p>
+                    The adjusted exam ends at <strong>@FormatFinish(Calculation.AdjustedExamFinish)</strong>.
+                    Your final scheduled finish is <strong>@FormatFinish(Calculation.FinalFinish)</strong>.
+                </p>
+            </div>
+
+            <button type="button" class="copy-button" @onclick="CopyResult">
+                <span aria-hidden="true">@(copied ? "✓" : "⧉")</span>
+                @(copied ? "Copied to clipboard" : "Copy result")
+            </button>
+        </aside>
+    </div>
+
+    <footer class="calculator-footer">
+        <span>Exam Time Calculator</span>
+        <span>Designed for clear, accessible timing decisions.</span>
+    </footer>
+</div>
