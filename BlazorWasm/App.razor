@@ -1,12 +1,21 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
+
     <NotFound>
         <PageTitle>Not found</PageTitle>
+
         <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
+            <div class="not-found-page">
+                <div class="not-found-card">
+                    <span class="not-found-code">404</span>
+                    <h1>That page doesn't exist.</h1>
+                    <p>The calculator lives on the home page.</p>
+                    <a class="copy-button not-found-button" href="/">Back to calculator</a>
+                </div>
+            </div>
         </LayoutView>
     </NotFound>
 </Router>
