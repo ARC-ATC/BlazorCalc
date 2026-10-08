@@ -12,7 +12,7 @@ public partial class Index
     private IJSRuntime JS { get; set; } = default!;
 
     private DateTime ExamDate { get; set; } = DateTime.Today;
-    private TimeSpan StartTime { get; set; } = new(9, 0, 0);
+    private TimeOnly StartTime { get; set; } = new(9, 0);
 
     private int examDurationMinutes = 60;
     private decimal extraTimePercent;
@@ -50,43 +50,10 @@ public partial class Index
     private ExamCalculation Calculation =>
         ExamTimeCalculator.Calculate(
             ExamDate,
-            StartTime,
+            StartTime.ToTimeSpan(),
             ExamDurationMinutes,
             ExtraTimePercent,
             BreakMinutes);
-
-    private string ExamDateText
-    {
-        get => ExamDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-        set
-        {
-            if (DateTime.TryParseExact(
-                value,
-                "yyyy-MM-dd",
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.None,
-                out var parsed))
-            {
-                ExamDate = parsed;
-            }
-        }
-    }
-
-    private string StartTimeText
-    {
-        get => StartTime.ToString(@"hh\:mm", CultureInfo.InvariantCulture);
-        set
-        {
-            if (TimeSpan.TryParseExact(
-                value,
-                @"hh\:mm",
-                CultureInfo.InvariantCulture,
-                out var parsed))
-            {
-                StartTime = parsed;
-            }
-        }
-    }
 
     private void SetDuration(int minutes)
     {
@@ -101,7 +68,7 @@ public partial class Index
     private void Reset()
     {
         ExamDate = DateTime.Today;
-        StartTime = new TimeSpan(9, 0, 0);
+        StartTime = new TimeOnly(9, 0);
         ExamDurationMinutes = 60;
         ExtraTimePercent = 0;
         BreakMinutes = 0;
