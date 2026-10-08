@@ -14,11 +14,27 @@ public partial class Index
     private DateTime ExamDate { get; set; } = DateTime.Today;
     private TimeSpan StartTime { get; set; } = new(9, 0, 0);
 
-    private int ExamDurationMinutes { get; set; } = 60;
+    private int examDurationMinutes = 60;
+    private decimal extraTimePercent;
+    private int breakMinutes;
 
-    private decimal ExtraTimePercent { get; set; } = 0;
+    private int ExamDurationMinutes
+    {
+        get => examDurationMinutes;
+        set => examDurationMinutes = Math.Clamp(value, 1, 1440);
+    }
 
-    private int BreakMinutes { get; set; } = 0;
+    private decimal ExtraTimePercent
+    {
+        get => extraTimePercent;
+        set => extraTimePercent = Math.Clamp(value, 0m, 200m);
+    }
+
+    private int BreakMinutes
+    {
+        get => breakMinutes;
+        set => breakMinutes = Math.Clamp(value, 0, 240);
+    }
 
     private bool copied;
 
@@ -154,10 +170,19 @@ public partial class Index
 
     private async Task CopyResult()
     {
-        await JS.InvokeVoidAsync("examCalc.copyText", BuildCopyText());
-        copied = true;
-        StateHasChanged();
-        await Task.Delay(1400);
+        try
+        {
+            await JS.InvokeVoidAsync("examCalc.copyText", BuildCopyText());
+            copied = true;
+            await InvokeAsync(StateHasChanged);
+
+            await Task.Delay(1400);
+        }
+        catch (JSException)
+        {
+            copied = false;
+        }
+
         copied = false;
         await InvokeAsync(StateHasChanged);
     }
