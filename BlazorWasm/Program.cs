@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Radzen;
 using BlazorWasm;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+builder.Services.AddRadzenComponents();
 
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");

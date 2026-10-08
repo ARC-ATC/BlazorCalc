@@ -55,23 +55,40 @@
             <div class="form-grid">
                 <div class="field-group">
                     <label for="exam-date">Exam date</label>
-                    <div class="input-shell">
-                        <span class="input-icon" aria-hidden="true">▣</span>
-                        <input id="exam-date"
-                               class="field-input"
-                               type="date"
-                               @bind="ExamDate" />
+                    <div class="picker-shell">
+                        <RadzenDatePicker @bind-Value="ExamDate"
+                                          TValue="DateTime"
+                                          Name="exam-date"
+                                          InputAttributes="@(new Dictionary<string, object> { ["aria-label"] = "Exam date" })"
+                                          DateFormat="MMMM d, yyyy"
+                                          Min="@DateTime.Today"
+                                          AllowClear="false"
+                                          NavigationMode="DatePickerNavigationMode.DropDown"
+                                          ShowButton="true"
+                                          class="fancy-picker"
+                                          Style="width: 100%;" />
                     </div>
                 </div>
 
                 <div class="field-group">
                     <label for="start-time">Start time</label>
-                    <div class="input-shell">
-                        <span class="input-icon" aria-hidden="true">◷</span>
-                        <input id="start-time"
-                               class="field-input"
-                               type="time"
-                               @bind="StartTime" />
+                    <div class="picker-shell">
+                        <RadzenDatePicker @bind-Value="StartTime"
+                                          TValue="TimeOnly"
+                                          Name="start-time"
+                                          InputAttributes="@(new Dictionary<string, object> { ["aria-label"] = "Start time" })"
+                                          TimeOnly="true"
+                                          HoursStep="1"
+                                          MinutesStep="5"
+                                          SecondsStep="60"
+                                          ShowSeconds="false"
+                                          HourFormat="h"
+                                          PadHours="false"
+                                          PadMinutes="true"
+                                          AllowClear="false"
+                                          ShowButton="true"
+                                          class="fancy-picker"
+                                          Style="width: 100%;" />
                     </div>
                 </div>
 
@@ -82,16 +99,22 @@
                     </div>
 
                     <div class="duration-input-row">
-                        <div class="input-shell duration-shell">
-                            <span class="input-icon" aria-hidden="true">⌁</span>
-                            <input id="exam-duration"
-                                   class="field-input"
-                                   type="number"
-                                   min="1"
-                                   max="1440"
-                                   step="1"
-                                   @bind="ExamDurationMinutes" />
-                            <span class="input-suffix">minutes</span>
+                        <div class="duration-picker-shell">
+                            <RadzenTimeSpanPicker @bind-Value="ExamDuration"
+                                                  TValue="TimeSpan"
+                                                  Name="exam-duration"
+                                                  InputAttributes="@(new Dictionary<string, object> { ["aria-label"] = "Standard exam duration" })"
+                                                  Min="@TimeSpan.FromMinutes(1)"
+                                                  Max="@TimeSpan.FromHours(24)"
+                                                  FieldPrecision="TimeSpanUnit.Minute"
+                                                  HoursStep="1"
+                                                  MinutesStep="5"
+                                                  PadTimeValues="true"
+                                                  TimeSpanFormat="hh\:mm"
+                                                  Placeholder="1:00"
+                                                  AllowClear="false"
+                                                  class="fancy-picker"
+                                                  Style="width: 100%;" />
                         </div>
 
                         <div class="quick-picks" aria-label="Common exam lengths">
@@ -176,14 +199,22 @@
                     </div>
                 </div>
 
-                <div class="break-input">
-                    <input aria-label="Break or other fixed time in minutes"
-                           type="number"
-                           min="0"
-                           max="240"
-                           step="1"
-                           @bind="BreakMinutes" />
-                    <span>min</span>
+                <div class="break-picker">
+                    <RadzenTimeSpanPicker @bind-Value="BreakDuration"
+                                          TValue="TimeSpan"
+                                          Name="fixed-time"
+                                          InputAttributes="@(new Dictionary<string, object> { ["aria-label"] = "Break or other fixed time" })"
+                                          Min="@TimeSpan.Zero"
+                                          Max="@TimeSpan.FromHours(4)"
+                                          FieldPrecision="TimeSpanUnit.Minute"
+                                          HoursStep="1"
+                                          MinutesStep="5"
+                                          PadTimeValues="true"
+                                          TimeSpanFormat="hh\:mm"
+                                          Placeholder="0:00"
+                                          AllowClear="false"
+                                          class="fancy-picker"
+                                          Style="width: 160px;" />
                 </div>
             </div>
 

@@ -18,6 +18,18 @@ public partial class Index
     private decimal extraTimePercent;
     private int breakMinutes;
 
+    private TimeSpan ExamDuration
+    {
+        get => TimeSpan.FromMinutes(ExamDurationMinutes);
+        set => ExamDurationMinutes = Math.Clamp((int)Math.Round(value.TotalMinutes), 1, 1440);
+    }
+
+    private TimeSpan BreakDuration
+    {
+        get => TimeSpan.FromMinutes(BreakMinutes);
+        set => BreakMinutes = Math.Clamp((int)Math.Round(value.TotalMinutes), 0, 240);
+    }
+
     private int ExamDurationMinutes
     {
         get => examDurationMinutes;
