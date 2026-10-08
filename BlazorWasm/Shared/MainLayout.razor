@@ -1,17 +1,27 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<div class="app-layout">
+    <header class="app-header">
+        <a class="brand" href="" aria-label="Exam Time Calculator home">
+            <span class="brand-mark" aria-hidden="true">
+                <span class="brand-hand brand-hand-hour"></span>
+                <span class="brand-hand brand-hand-minute"></span>
+            </span>
+            <span class="brand-copy">
+                <strong>ExamTime</strong>
+                <span>Calculator</span>
+            </span>
+        </a>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        <div class="header-actions">
+            <span class="browser-badge">
+                <span class="browser-badge-dot"></span>
+                Runs locally
+            </span>
         </div>
+    </header>
 
-        <article class="content px-4">
-            @Body
-        </article>
+    <main class="app-main">
+        @Body
     </main>
 </div>
