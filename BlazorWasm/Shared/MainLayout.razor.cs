@@ -9,6 +9,7 @@ public partial class MainLayout
     private IJSRuntime JS { get; set; } = default!;
 
     private bool isDarkTheme;
+    private string radzenTheme = "material";
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -17,6 +18,8 @@ public partial class MainLayout
 
         var theme = await JS.InvokeAsync<string>("examCalc.getTheme");
         isDarkTheme = theme == "dark";
+        radzenTheme = isDarkTheme ? "material-dark" : "material";
+
         await InvokeAsync(StateHasChanged);
     }
 
@@ -24,5 +27,6 @@ public partial class MainLayout
     {
         var theme = await JS.InvokeAsync<string>("examCalc.toggleTheme");
         isDarkTheme = theme == "dark";
+        radzenTheme = isDarkTheme ? "material-dark" : "material";
     }
 }
