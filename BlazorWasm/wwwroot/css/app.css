@@ -1881,3 +1881,79 @@ html[data-theme="dark"] .rz-timespanpicker-popup {
         width: 100% !important;
     }
 }
+
+
+/* Dark-mode Radzen input contrast fix */
+html[data-theme="dark"] .fancy-picker .rz-inputtext,
+html[data-theme="dark"] .fancy-picker input.rz-inputtext,
+html[data-theme="dark"] .fancy-picker input.rz-inputtext.rz-state-filled {
+    background-color: #172738 !important;
+    color: #f2f5f7 !important;
+    -webkit-text-fill-color: #f2f5f7 !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+html[data-theme="dark"] .fancy-picker .rz-inputtext::placeholder,
+html[data-theme="dark"] .fancy-picker input.rz-inputtext::placeholder {
+    color: #aebbc5 !important;
+    -webkit-text-fill-color: #aebbc5 !important;
+    opacity: 1 !important;
+}
+
+html[data-theme="dark"] .fancy-picker .rz-inputtext:focus,
+html[data-theme="dark"] .fancy-picker input.rz-inputtext:focus {
+    background-color: #1a2d40 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border-color: rgba(186, 12, 47, 0.58) !important;
+    box-shadow: 0 0 0 4px rgba(186, 12, 47, 0.12) !important;
+}
+
+html[data-theme="dark"] .fancy-picker .rz-inputtext:disabled,
+html[data-theme="dark"] .fancy-picker input.rz-inputtext:disabled {
+    background-color: #101c29 !important;
+    color: #8796a2 !important;
+    -webkit-text-fill-color: #8796a2 !important;
+}
+
+html[data-theme="dark"] .fancy-picker .rz-datepicker-trigger,
+html[data-theme="dark"] .fancy-picker .rz-datepicker-field-button,
+html[data-theme="dark"] .fancy-picker .rz-spinner-button {
+    color: #dce9f1 !important;
+}
+
+html[data-theme="dark"] .fancy-picker .rz-datepicker-trigger:hover,
+html[data-theme="dark"] .fancy-picker .rz-datepicker-field-button:hover,
+html[data-theme="dark"] .fancy-picker .rz-spinner-button:hover {
+    color: #ffb2c0 !important;
+}
+
+html[data-theme="dark"] .break-picker .rz-inputtext,
+html[data-theme="dark"] .duration-picker-shell .rz-inputtext {
+    color: #f2f5f7 !important;
+    -webkit-text-fill-color: #f2f5f7 !important;
+}
+
+html[data-theme="dark"] .rz-calendar,
+html[data-theme="dark"] .rz-calendar-view,
+html[data-theme="dark"] .rz-datepicker-popup-container,
+html[data-theme="dark"] .rz-timespanpicker-popup {
+    color: #f2f5f7;
+}
+
+html[data-theme="dark"] .rz-calendar .rz-button,
+html[data-theme="dark"] .rz-calendar .rz-state-default,
+html[data-theme="dark"] .rz-calendar .rz-calendar-title,
+html[data-theme="dark"] .rz-calendar .rz-calendar-day {
+    color: #f2f5f7 !important;
+}
+
+html[data-theme="dark"] .rz-calendar .rz-state-disabled {
+    color: #657582 !important;
+}
+
+html[data-theme="dark"] .rz-calendar .rz-state-active,
+html[data-theme="dark"] .rz-calendar .rz-state-focused {
+    color: #ffffff !important;
+    background: #ba0c2f !important;
+}
