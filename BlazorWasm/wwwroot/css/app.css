@@ -2312,3 +2312,157 @@ html[data-theme="dark"] #blazor-error-ui {
         outline: 2px solid CanvasText;
     }
 }
+
+
+/* =========================================================
+   Radzen calendar navigation dropdowns
+   The DatePicker's month/year selectors are RadzenDropDown
+   controls rendered inside the popup, so they need their own
+   dark-mode surface and text treatment.
+   ========================================================= */
+
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown {
+    min-height: 36px;
+    border: 1px solid var(--control-border) !important;
+    border-radius: 10px !important;
+    background: var(--control-bg) !important;
+    color: var(--control-text) !important;
+    box-shadow: none !important;
+}
+
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-label,
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-label.rz-inputtext {
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    padding: 6px 30px 6px 10px !important;
+    border: 0 !important;
+    border-radius: 9px !important;
+    background: transparent !important;
+    color: var(--control-text) !important;
+    -webkit-text-fill-color: var(--control-text) !important;
+    font-size: 12px !important;
+    font-weight: 700;
+}
+
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown:hover {
+    border-color: var(--control-border-hover) !important;
+    background: var(--control-bg-hover) !important;
+}
+
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown:focus,
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown:focus-within {
+    border-color: var(--control-border-focus) !important;
+    background: var(--control-bg-focus) !important;
+    box-shadow: var(--focus-ring) !important;
+    outline: none !important;
+}
+
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger {
+    width: 28px !important;
+    min-width: 28px !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    color: var(--picker-icon) !important;
+}
+
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger:hover,
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger:focus-visible {
+    background: var(--arc-red) !important;
+    color: #ffffff !important;
+}
+
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger-icon,
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger-icon.rzi,
+.rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger-icon::before {
+    color: currentColor !important;
+}
+
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown,
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-label,
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-label.rz-inputtext {
+    background: #172b3d !important;
+    color: #f4f7f9 !important;
+    -webkit-text-fill-color: #f4f7f9 !important;
+    border-color: rgba(255, 255, 255, 0.20) !important;
+}
+
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown:hover,
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-label:hover {
+    background: #1b3348 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.34) !important;
+}
+
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown:focus,
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown:focus-within {
+    background: #1d364b !important;
+    color: #ffffff !important;
+    border-color: rgba(236, 116, 141, 0.82) !important;
+    box-shadow: 0 0 0 4px rgba(186, 12, 47, 0.22) !important;
+}
+
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger {
+    background: transparent !important;
+    color: #dbe8ef !important;
+}
+
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger:hover,
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger:focus-visible {
+    background: #ba0c2f !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger-icon,
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger-icon.rzi,
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-title .rz-dropdown-trigger-icon::before {
+    color: currentColor !important;
+}
+
+/* The month/year option lists are popup-level elements and are
+   rendered outside the DatePicker's local DOM. */
+.rz-dropdown-panel,
+.rz-dropdown-panel .rz-dropdown-items {
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--radius-md) !important;
+    background: var(--surface-solid) !important;
+    color: var(--text) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.rz-dropdown-panel .rz-dropdown-item {
+    color: var(--text) !important;
+}
+
+.rz-dropdown-panel .rz-dropdown-item:hover,
+.rz-dropdown-panel .rz-dropdown-item.rz-state-highlight,
+.rz-dropdown-panel .rz-dropdown-item.rz-state-active {
+    color: var(--text) !important;
+    background: var(--primary-soft) !important;
+}
+
+html[data-theme="dark"] .rz-dropdown-panel,
+html[data-theme="dark"] .rz-dropdown-panel .rz-dropdown-items {
+    background: #122536 !important;
+    color: #f4f7f9 !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+html[data-theme="dark"] .rz-dropdown-panel .rz-dropdown-item {
+    color: #f4f7f9 !important;
+}
+
+html[data-theme="dark"] .rz-dropdown-panel .rz-dropdown-item:hover,
+html[data-theme="dark"] .rz-dropdown-panel .rz-dropdown-item.rz-state-highlight,
+html[data-theme="dark"] .rz-dropdown-panel .rz-dropdown-item.rz-state-active {
+    color: #ffffff !important;
+    background: #24445a !important;
+}
+
+/* Keep the visible month/year controls readable regardless of
+   which Radzen theme variables are active. */
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-month-dropdown *,
+html[data-theme="dark"] .rz-datepicker-popup-container .rz-calendar-year-dropdown * {
+    color: #f4f7f9 !important;
+}
